@@ -1,0 +1,42 @@
+﻿@model DiyosEmployee.Models.UpdateEmployeeViewModel;
+
+<h1>Edit Employee</h1>
+<form method="post" action="Update" class="mt-5" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="" class="form-label">EmpId</label>
+        <input type="text" class="form-control" asp-for="EmpId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">EmpName</label>
+        <input type="text" class="form-control" asp-for="EmpName">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Gender</label>
+        <select class="form-control" asp-for="Gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">DOB</label>
+        <input type="date" class="form-control" asp-for="DOB">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Place</label>
+        <input type="text" class="form-control" asp-for="Place">
+    </div>
+    <div class="mb-3">
+        <label for="fileInput" class="form-label">Employee Photo</label>
+        <input type="file" class="form-control" id="fileInput" name="PhotoFile">
+    </div>
+    @if (Model.Photo != null && Model.Photo.Length > 0)
+    {
+        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Photo)" alt="Employee Photo" width="100" height="100" />
+    }
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-danger"
+    asp-action="Delete"
+    asp-controller="Employees">Delete</button>
+</form>
